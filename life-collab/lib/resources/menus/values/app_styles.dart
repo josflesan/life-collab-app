@@ -24,6 +24,12 @@ class AppStyles {
     color: AppColors.APP_BLACK,
   );
 
+  static const TextStyle SMALL_HEADING_STYLE = TextStyle(
+    fontSize: AppDimens.SMALL_HEADING_SIZE,
+    fontFamily: 'Gilroy',
+    color: AppColors.APP_DARK_GREY,
+  );
+
   static const TextStyle ELEVATED_BUTTON_TEXT_STYLE = TextStyle(
     fontSize: AppDimens.BUTTON_TEXT,
     fontFamily: 'Gilroy',
@@ -31,8 +37,15 @@ class AppStyles {
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle TEXT_BUTTON_STYLE = TextStyle(
+  static const TextStyle LARGE_TEXT_BUTTON_STYLE = TextStyle(
     fontSize: AppDimens.BUTTON_TEXT,
+    fontFamily: 'Gilroy',
+    color: AppColors.APP_BLACK,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const TextStyle SMALL_TEXT_BUTTON_STYLE = TextStyle(
+    fontSize: 18.0,
     fontFamily: 'Gilroy',
     color: AppColors.APP_BLACK,
     fontWeight: FontWeight.w700,

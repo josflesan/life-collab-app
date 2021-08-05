@@ -11,6 +11,7 @@ class AppDimens {
   // Text Dimensions
   static const double TITLE_SIZE = 36.0;
   static const double SUBTITLE_SIZE = 18.0;
+  static const double SMALL_HEADING_SIZE = 14.0;
   static const double BUTTON_TEXT = 22.0;
   static const double FORM_LABEL_TEXT_SIZE = 13.0;
   static const double FORM_INPUT_TEXT_SIZE = 20.0;

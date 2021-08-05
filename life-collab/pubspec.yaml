@@ -47,6 +47,8 @@ flutter:
 
   assets:
     - assets/images/landing-graphic.png
+    - assets/images/google.png
+    - assets/images/facebook.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -83,14 +85,15 @@ flutter:
 
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-Regular.ttf;
-        - asset: assets/fonts/Inter-Thin.ttf;
+        - asset: assets/fonts/Inter-Regular.ttf
           weight: 100
-        - asset: assets/fonts/Inter-Light.ttf;
+        - asset: assets/fonts/Inter-Thin.ttf
           weight: 200
-        - asset: assets/fonts/Inter-Medium.ttf;
+        - asset: assets/fonts/Inter-Light.ttf
           weight: 300
-        - asset: assets/fonts/Inter-Bold.ttf;
+        - asset: assets/fonts/Inter-Medium.ttf
           weight: 400
-        - asset: assets/fonts/Inter-ExtraBold.ttf;
+        - asset: assets/fonts/Inter-Bold.ttf
           weight: 500
+        - asset: assets/fonts/Inter-ExtraBold.ttf
+          weight: 600

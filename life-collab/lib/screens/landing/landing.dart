@@ -5,7 +5,7 @@ import 'package:life_collab/resources/menus/values/app_styles.dart';
 import 'package:life_collab/screens/login/login.dart';
 import 'package:life_collab/screens/signup/signup.dart';
 import 'package:life_collab/widgets/primary-button.dart';
-import 'package:life_collab/widgets/text-button.dart';
+import 'package:life_collab/widgets/large-text-button.dart';
 
 class OurLanding extends StatelessWidget {
   @override
@@ -49,7 +49,7 @@ class OurLanding extends StatelessWidget {
                       click: navigateLogin,
                       text: "Login",
                       color: AppColors.PRIMARY_GREEN),
-                  OurTextButton(
+                  LargeTextButton(
                     click: navigateSignup,
                     text: "Sign Up",
                     color: AppColors.APP_BLACK,
