@@ -3,17 +3,19 @@ import 'package:life_collab/resources/menus/values/app_colors.dart';
 import 'package:life_collab/resources/menus/values/app_styles.dart';
 
 class OurTextForm extends StatefulWidget {
-  const OurTextForm({Key key, this.hintText, this.labelText}) : super(key: key);
+  const OurTextForm({Key key, this.hintText, this.labelText, this.icon})
+      : super(key: key);
 
   final String hintText;
   final String labelText;
+  final IconData icon;
 
   @override
   _OurTextFormState createState() => _OurTextFormState();
 }
 
 class _OurTextFormState extends State<OurTextForm> {
-  bool _obscureText = false;
+  bool _obscureText = true;
 
   // Toggles the password show status
   void _toggle() {
@@ -25,9 +27,10 @@ class _OurTextFormState extends State<OurTextForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style:
-          _obscureText ? AppStyles.PASSWORD_HIDDEN : AppStyles.FORM_INPUT_STYLE,
-      obscureText: _obscureText,
+      obscureText: widget.labelText == "Password" ? _obscureText : false,
+      style: (_obscureText && widget.labelText == "Password")
+          ? AppStyles.PASSWORD_HIDDEN
+          : AppStyles.FORM_INPUT_STYLE,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
@@ -42,7 +45,7 @@ class _OurTextFormState extends State<OurTextForm> {
                         color: AppColors.FADED_OUT_COLOUR,
                       ),
               )
-            : Icon(Icons.email_outlined, color: AppColors.FADED_OUT_COLOUR),
+            : Icon(widget.icon, color: AppColors.FADED_OUT_COLOUR),
         labelText: widget.labelText,
         labelStyle: AppStyles.FORM_LABEL_STYLE,
         hintText: widget.hintText,

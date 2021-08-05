@@ -4,8 +4,8 @@ import 'package:life_collab/resources/menus/values/app_dimens.dart';
 import 'package:life_collab/widgets/primary-button.dart';
 import 'package:life_collab/widgets/text-form.dart';
 
-class OurLoginForm extends StatelessWidget {
-  const OurLoginForm({Key key}) : super(key: key);
+class OurSignUpForm extends StatelessWidget {
+  const OurSignUpForm({Key key}) : super(key: key);
 
   void validateUser() {}
 
@@ -18,6 +18,8 @@ class OurLoginForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           OurTextForm(
+              labelText: "Name", hintText: "John Doe", icon: Icons.person),
+          OurTextForm(
               labelText: "Email",
               hintText: "myemail@gmail.com",
               icon: Icons.mail_outline),
@@ -26,7 +28,7 @@ class OurLoginForm extends StatelessWidget {
           SizedBox(height: AppDimens.SMALL_SPACER),
           OurPrimaryButton(
               click: validateUser,
-              text: "Login",
+              text: "Sign Up",
               color: AppColors.PRIMARY_GREEN),
         ],
       ),
