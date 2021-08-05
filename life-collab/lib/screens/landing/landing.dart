@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:life_collab/resources/menus/values/app_colors.dart';
+import 'package:life_collab/resources/menus/values/app_dimens.dart';
 import 'package:life_collab/resources/menus/values/app_styles.dart';
+import 'package:life_collab/screens/login/login.dart';
+import 'package:life_collab/screens/signup/signup.dart';
 import 'package:life_collab/widgets/primary-button.dart';
 import 'package:life_collab/widgets/text-button.dart';
 
 class OurLanding extends StatelessWidget {
-  void navigateLogin() {
-    print("Hello");
-  }
-
-  void navigateSignup() {
-    print("Bye");
-  }
-
   @override
   Widget build(BuildContext context) {
+    void navigateLogin() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => OurLogin()));
+    }
+
+    void navigateSignup() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => OurSignUp()));
+    }
+
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(40.0),
+        padding: AppDimens.SCREEN_PADDING_LARGE,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

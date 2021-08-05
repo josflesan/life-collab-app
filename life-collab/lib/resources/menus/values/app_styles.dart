@@ -38,6 +38,24 @@ class AppStyles {
     fontWeight: FontWeight.w700,
   );
 
+  static const TextStyle FORM_LABEL_STYLE = TextStyle(
+    fontSize: AppDimens.FORM_LABEL_TEXT_SIZE,
+    fontFamily: 'Inter',
+    color: AppColors.FADED_OUT_COLOUR,
+  );
+
+  static const TextStyle FORM_INPUT_STYLE = TextStyle(
+    fontSize: AppDimens.FORM_INPUT_TEXT_SIZE,
+    fontFamily: 'Inter',
+    color: AppColors.APP_BLACK,
+  );
+
+  static const TextStyle PASSWORD_HIDDEN = TextStyle(
+    fontSize: AppDimens.FORM_INPUT_TEXT_SIZE,
+    fontFamily: 'Inter',
+    color: AppColors.PRIMARY_GREEN,
+  );
+
   // Button Styles
 
 }

@@ -8,4 +8,5 @@ class AppColors {
   static const Color APP_BLACK = Color(0xFF00160A);
   static const Color APP_DARK_GREY = Color(0xFF3B413C);
   static const Color APP_WHITE = Color(0xFFF9F9F9);
+  static const Color FADED_OUT_COLOUR = Color(0xFF4F4F4F);
 }
