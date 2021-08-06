@@ -1,17 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:life_collab/resources/menus/values/app_dimens.dart';
 import 'package:life_collab/resources/menus/values/app_styles.dart';
+import 'package:life_collab/screens/no-group/no-group.dart';
+import 'package:life_collab/states/currentUser.dart';
 import 'package:life_collab/widgets/link-account-button.dart';
+import 'package:provider/provider.dart';
 
 class AlternativeLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    void googleSignIn() {}
+    void googleLogin() async {
+      CurrentUser _currentUser =
+          Provider.of<CurrentUser>(context, listen: false);
+
+      try {
+        String _returnString = await _currentUser.loginUserWithGoogle();
+        if (_returnString == "success") {
+          Navigator.popUntil(
+              context, ModalRoute.withName('/')); // Pop all previous screens
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(_returnString), duration: Duration(seconds: 2)));
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
 
     void facebookSignIn() {}
 
     var GoogleButton = LinkAccountButton(
-        click: googleSignIn,
+        click: googleLogin,
         text: "google",
         icon: Image.asset("assets/images/google.png"));
 
