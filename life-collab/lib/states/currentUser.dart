@@ -10,17 +10,14 @@ class CurrentUser extends ChangeNotifier {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<bool> signUpUser(
+  Future<String> signUpUser(
       String email, String password, BuildContext context) async {
-    bool retVal = false;
+    String retVal = "error";
 
     try {
-      UserCredential _authResult = await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-
-      if (_authResult.user != null) {
-        retVal = true;
-      }
+      retVal = "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -29,25 +26,23 @@ class CurrentUser extends ChangeNotifier {
             duration: Duration(seconds: 2)));
       }
     } catch (e) {
-      print(e);
+      retVal = e.message;
     }
 
     return retVal;
   }
 
-  Future<bool> loginUser(
+  Future<String> loginUserWithEmail(
       String email, String password, BuildContext context) async {
-    bool retVal = false;
+    String retVal = "error";
 
     try {
       UserCredential _authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      if (_authResult.user != null) {
-        _uid = _authResult.user.uid;
-        _email = _authResult.user.email;
-        retVal = true;
-      }
+      _uid = _authResult.user.uid;
+      _email = _authResult.user.email;
+      retVal = "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -58,7 +53,7 @@ class CurrentUser extends ChangeNotifier {
             duration: Duration(seconds: 2)));
       }
     } catch (e) {
-      print(e);
+      retVal = e.message;
     }
 
     return retVal;

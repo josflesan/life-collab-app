@@ -22,11 +22,16 @@ class _OurLoginFormState extends State<OurLoginForm> {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      if (await _currentUser.loginUser(email, password, context)) {
+      String _returnString =
+          await _currentUser.loginUserWithEmail(email, password, context);
+      if (_returnString == "success") {
         Navigator.popUntil(
             context, ModalRoute.withName('/')); // Pop all previous screens
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(_returnString), duration: Duration(seconds: 2)));
       }
     } catch (e) {
       print(e);
