@@ -23,7 +23,7 @@ class AlternativeSignup extends StatelessWidget {
         icon: Image.asset("assets/images/facebook.png"));
 
     return Container(
-      margin: AppDimens.BUTTON_PADDING,
+      margin: EdgeInsets.symmetric(vertical: AppDimens.SMALL_SPACER),
       width: MediaQuery.of(context).size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

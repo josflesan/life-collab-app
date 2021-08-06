@@ -29,6 +29,7 @@ class OurSignUp extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
+                  SizedBox(height: AppDimens.SMALL_SPACER),
                   Container(
                     child: Text("A Fresh Start",
                         style: AppStyles.TITLE_STYLE_BLACK),
@@ -40,10 +41,10 @@ class OurSignUp extends StatelessWidget {
                   AlternativeSignup(),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.2,
+                    height: MediaQuery.of(context).size.height * 0.1,
                     alignment: Alignment.bottomCenter,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
