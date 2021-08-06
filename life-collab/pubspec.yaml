@@ -27,10 +27,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  firebase_core:
-  firebase_auth:
+  firebase_core: ^1.2.0
+  firebase_auth: ^1.2.0
+  provider: 
+  flutter_facebook_auth: ^3.4.1
   google_sign_in: ^5.0.0
-  provider:
 
 
 # For information on the generic Dart part of this file, see the

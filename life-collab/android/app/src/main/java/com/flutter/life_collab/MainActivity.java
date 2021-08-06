@@ -1,4 +1,4 @@
-package com.flutter.book_club;
+package com.flutter.life_collab;
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;
