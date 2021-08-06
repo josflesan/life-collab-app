@@ -24,8 +24,8 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      if (await _currentUser.signUpUser(email, password)) {
-        Navigator.pop(context);
+      if (await _currentUser.signUpUser(email, password, context)) {
+        Navigator.pop(context); // Pop signup screen
         // Return to Login Screen
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => OurLogin()));
@@ -35,13 +35,17 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
     }
   }
 
-  void validateUser() {
-    if (_passwordController.text == _confirmPasswordController.text) {
-      _signUpUser(_emailController.text, _passwordController.text, context);
-    } else {
+  void validateAccount() {
+    if (_passwordController.text != _confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Passwords do not match"),
           duration: Duration(seconds: 2)));
+    } else if (_passwordController.text.length <= 6) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Password should be at least 7 characters long"),
+          duration: Duration(seconds: 2)));
+    } else {
+      _signUpUser(_emailController.text, _passwordController.text, context);
     }
   }
 
@@ -76,7 +80,7 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
               hintText: ""),
           SizedBox(height: AppDimens.SMALL_SPACER),
           OurPrimaryButton(
-              click: validateUser,
+              click: validateAccount,
               text: "Sign Up",
               color: AppColors.PRIMARY_GREEN),
         ],

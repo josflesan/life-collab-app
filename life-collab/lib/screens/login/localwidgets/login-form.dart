@@ -22,13 +22,11 @@ class _OurLoginFormState extends State<OurLoginForm> {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      if (await _currentUser.loginUser(email, password)) {
+      if (await _currentUser.loginUser(email, password, context)) {
+        Navigator.popUntil(
+            context, ModalRoute.withName('/')); // Pop all previous screens
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Incorrect Login Details"),
-            duration: Duration(seconds: 2)));
       }
     } catch (e) {
       print(e);
