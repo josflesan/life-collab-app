@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   firebase_core:
   firebase_auth:
+  google_sign_in: ^5.0.0
   provider:
 
 

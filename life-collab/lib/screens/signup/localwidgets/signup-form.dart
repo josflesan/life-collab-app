@@ -24,11 +24,16 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      if (await _currentUser.signUpUser(email, password, context)) {
+      String _returnString =
+          await _currentUser.signUpUser(email, password, context);
+      if (_returnString == "success") {
         Navigator.pop(context); // Pop signup screen
         // Return to Login Screen
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => OurLogin()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(_returnString), duration: Duration(seconds: 2)));
       }
     } catch (e) {
       print(e);
