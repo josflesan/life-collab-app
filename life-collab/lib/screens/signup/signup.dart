@@ -29,7 +29,7 @@ class OurSignUp extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  SizedBox(height: AppDimens.SMALL_SPACER),
+                  //SizedBox(height: AppDimens.SMALL_SPACER),
                   Container(
                     child: Text("A Fresh Start",
                         style: AppStyles.TITLE_STYLE_BLACK),

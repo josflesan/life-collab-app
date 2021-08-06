@@ -26,7 +26,7 @@ class AlternativeLogin extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Or sign in with", style: AppStyles.SMALL_HEADING_STYLE),
+          Text("Or log in with", style: AppStyles.SMALL_HEADING_STYLE),
           SizedBox(height: AppDimens.LARGE_SPACER),
           GoogleButton,
           SizedBox(height: AppDimens.SMALL_SPACER),
