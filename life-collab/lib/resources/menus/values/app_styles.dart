@@ -24,6 +24,14 @@ class AppStyles {
     color: AppColors.APP_BLACK,
   );
 
+  static const TextStyle ORANGE_UL_SUBTITLE_STYLE = TextStyle(
+    fontSize: AppDimens.SUBTITLE_SIZE,
+    fontFamily: 'Gilroy',
+    color: AppColors.APP_BLACK,
+    decorationColor: AppColors.SECONDARY_ORANGE,
+    decoration: TextDecoration.underline,
+  );
+
   static const TextStyle SMALL_HEADING_STYLE = TextStyle(
     fontSize: AppDimens.SMALL_HEADING_SIZE,
     fontFamily: 'Gilroy',

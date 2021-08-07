@@ -5,6 +5,8 @@ class AppDimens {
   static const EdgeInsets SCREEN_PADDING_LARGE = EdgeInsets.all(40.0);
   static const EdgeInsets SCREEN_PADDING_SMALL = EdgeInsets.all(20.0);
   static const EdgeInsets BUTTON_PADDING = EdgeInsets.symmetric(vertical: 15.0);
+  static const double XXLARGE_SPACER = 50.0;
+  static const double XLARGE_SPACER = 23.0;
   static const double LARGE_SPACER = 13.0;
   static const double SMALL_SPACER = 9.0;
 
