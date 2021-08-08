@@ -20,7 +20,10 @@ class CurrentUser extends ChangeNotifier {
       if (_firebaseUser != null) {
         _currentUser.uid = _firebaseUser.uid;
         _currentUser.email = _firebaseUser.email;
-        retVal = "success";
+        _currentUser = await OurDatabase().getUserInfo(_firebaseUser.uid);
+        if (_currentUser != null) {
+          retVal = "success";
+        }
       }
     } catch (e) {
       print(e);
@@ -88,7 +91,10 @@ class CurrentUser extends ChangeNotifier {
 
       _currentUser.uid = _authResult.user.uid;
       _currentUser.email = _authResult.user.email;
-      retVal = "success";
+      _currentUser = await OurDatabase().getUserInfo(_authResult.user.uid);
+      if (_currentUser != null) {
+        retVal = "success";
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -130,7 +136,10 @@ class CurrentUser extends ChangeNotifier {
         _user.fullName = _authResult.user.displayName;
         OurDatabase().createUser(_user);
       }
-      retVal = "success";
+      _currentUser = await OurDatabase().getUserInfo(_authResult.user.uid);
+      if (_currentUser != null) {
+        retVal = "success";
+      }
     } catch (e) {
       retVal = e.message;
     }
@@ -163,7 +172,11 @@ class CurrentUser extends ChangeNotifier {
             OurDatabase().createUser(_user);
           }
 
-          retVal = "success";
+          _currentUser = await OurDatabase().getUserInfo(_authResult.user.uid);
+          if (_currentUser != null) {
+            retVal = "success";
+          }
+
           break;
 
         case LoginStatus.cancelled:
