@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:life_collab/models/user.dart';
+import 'package:life_collab/services/database.dart';
 
 class CurrentUser extends ChangeNotifier {
-  String _uid;
-  String _email;
+  OurUser _currentUser = OurUser();
 
-  String get getUid => _uid;
-  String get getEmail => _email;
+  OurUser get getCurrentUser => _currentUser;
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -17,9 +17,11 @@ class CurrentUser extends ChangeNotifier {
 
     try {
       User _firebaseUser = await _auth.currentUser;
-      _uid = _firebaseUser.uid;
-      _email = _firebaseUser.email;
-      retVal = "success";
+      if (_firebaseUser != null) {
+        _currentUser.uid = _firebaseUser.uid;
+        _currentUser.email = _firebaseUser.email;
+        retVal = "success";
+      }
     } catch (e) {
       print(e);
     }
@@ -32,8 +34,7 @@ class CurrentUser extends ChangeNotifier {
 
     try {
       await _auth.signOut();
-      _uid = null;
-      _email = null;
+      _currentUser = OurUser();
       retVal = "success";
     } catch (e) {
       print(e);
@@ -42,14 +43,22 @@ class CurrentUser extends ChangeNotifier {
     return retVal;
   }
 
-  Future<String> signUpUser(
-      String email, String password, BuildContext context) async {
+  Future<String> signUpUser(String email, String password, String fullName,
+      BuildContext context) async {
     String retVal = "error";
 
+    OurUser _user = OurUser();
+
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential _authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      retVal = "success";
+      _user.uid = _authResult.user.uid;
+      _user.email = _authResult.user.email;
+      _user.fullName = fullName;
+      String _returnString = await OurDatabase().createUser(_user);
+      if (_returnString == "success") {
+        retVal = "success";
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -77,8 +86,8 @@ class CurrentUser extends ChangeNotifier {
       UserCredential _authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      _uid = _authResult.user.uid;
-      _email = _authResult.user.email;
+      _currentUser.uid = _authResult.user.uid;
+      _currentUser.email = _authResult.user.email;
       retVal = "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password') {
@@ -113,8 +122,8 @@ class CurrentUser extends ChangeNotifier {
       final UserCredential _authResult =
           await _auth.signInWithCredential(credential);
 
-      _uid = _authResult.user.uid;
-      _email = _authResult.user.email;
+      _currentUser.uid = _authResult.user.uid;
+      _currentUser.email = _authResult.user.email;
       retVal = "success";
     } catch (e) {
       retVal = e.message;
@@ -137,8 +146,8 @@ class CurrentUser extends ChangeNotifier {
           final _authResult =
               await _auth.signInWithCredential(facebookCredential);
 
-          _uid = _authResult.user.uid;
-          _email = _authResult.user.email;
+          _currentUser.uid = _authResult.user.uid;
+          _currentUser.email = _authResult.user.email;
 
           retVal = "success";
           break;

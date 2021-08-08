@@ -20,12 +20,13 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
-  void _signUpUser(String email, String password, BuildContext context) async {
+  void _signUpUser(String email, String password, String fullName,
+      BuildContext context) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
       String _returnString =
-          await _currentUser.signUpUser(email, password, context);
+          await _currentUser.signUpUser(email, password, fullName, context);
       if (_returnString == "success") {
         Navigator.pop(context); // Pop signup screen
         // Return to Login Screen
@@ -50,7 +51,8 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
           content: Text("Password should be at least 7 characters long"),
           duration: Duration(seconds: 2)));
     } else {
-      _signUpUser(_emailController.text, _passwordController.text, context);
+      _signUpUser(_emailController.text, _passwordController.text,
+          _fullNameController.text, context);
     }
   }
 
