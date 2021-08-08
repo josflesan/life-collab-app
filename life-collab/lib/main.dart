@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:life_collab/screens/landing/landing.dart';
+import 'package:life_collab/screens/root/root.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:life_collab/utils/lightTheme.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: LightTheme().buildTheme(),
-        home: OurLanding(),
+        home: OurRoot(),
       ),
     );
   }
