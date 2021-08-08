@@ -141,8 +141,12 @@ class CurrentUser extends ChangeNotifier {
   Future<String> loginUserWithFacebook() async {
     String retVal = "error";
 
+    OurUser _user = OurUser();
+
     try {
-      final LoginResult result = await FacebookAuth.instance.login();
+      final LoginResult result = await FacebookAuth.instance.login(
+          permissions: const ['email', 'public_profile'],
+          loginBehavior: LoginBehavior.dialogOnly);
 
       switch (result.status) {
         case LoginStatus.success:
@@ -152,8 +156,12 @@ class CurrentUser extends ChangeNotifier {
           final _authResult =
               await _auth.signInWithCredential(facebookCredential);
 
-          _currentUser.uid = _authResult.user.uid;
-          _currentUser.email = _authResult.user.email;
+          if (_authResult.additionalUserInfo.isNewUser) {
+            _user.uid = _authResult.user.uid;
+            _user.email = _authResult.user.email;
+            _user.fullName = _authResult.user.displayName;
+            OurDatabase().createUser(_user);
+          }
 
           retVal = "success";
           break;
