@@ -113,6 +113,8 @@ class CurrentUser extends ChangeNotifier {
       'https://www.googleapis.com/auth/contacts.readonly',
     ]);
 
+    OurUser _user = OurUser();
+
     try {
       GoogleSignInAccount _googleUser = await _googleSignIn.signIn();
       GoogleSignInAuthentication _googleAuth = await _googleUser.authentication;
@@ -122,8 +124,12 @@ class CurrentUser extends ChangeNotifier {
       final UserCredential _authResult =
           await _auth.signInWithCredential(credential);
 
-      _currentUser.uid = _authResult.user.uid;
-      _currentUser.email = _authResult.user.email;
+      if (_authResult.additionalUserInfo.isNewUser) {
+        _user.uid = _authResult.user.uid;
+        _user.email = _authResult.user.email;
+        _user.fullName = _authResult.user.displayName;
+        OurDatabase().createUser(_user);
+      }
       retVal = "success";
     } catch (e) {
       retVal = e.message;
