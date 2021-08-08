@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_collab/resources/menus/values/app_colors.dart';
 import 'package:life_collab/resources/menus/values/app_dimens.dart';
+import 'package:life_collab/screens/home/home.dart';
 import 'package:life_collab/screens/no-group/no-group.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:life_collab/widgets/primary-button.dart';
@@ -28,7 +29,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
         Navigator.popUntil(
             context, ModalRoute.withName('/')); // Pop all previous screens
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
+            .push(MaterialPageRoute(builder: (context) => OurHomeScreen()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(_returnString), duration: Duration(seconds: 2)));

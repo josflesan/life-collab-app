@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_collab/screens/home/home.dart';
 import 'package:life_collab/screens/landing/landing.dart';
 import 'package:life_collab/screens/no-group/no-group.dart';
 import 'package:life_collab/states/currentUser.dart';
@@ -46,7 +47,7 @@ class _OurRootState extends State<OurRoot> {
         break;
 
       case AuthStatus.loggedIn:
-        retVal = NoGroupScreen();
+        retVal = OurHomeScreen();
         break;
 
       default:

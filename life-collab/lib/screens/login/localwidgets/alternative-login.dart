@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_collab/resources/menus/values/app_dimens.dart';
 import 'package:life_collab/resources/menus/values/app_styles.dart';
+import 'package:life_collab/screens/home/home.dart';
 import 'package:life_collab/screens/no-group/no-group.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:life_collab/widgets/link-account-button.dart';
@@ -19,7 +20,7 @@ class AlternativeLogin extends StatelessWidget {
           Navigator.popUntil(
               context, ModalRoute.withName('/')); // Pop all previous screens
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
+              .push(MaterialPageRoute(builder: (context) => OurHomeScreen()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(_returnString), duration: Duration(seconds: 2)));
@@ -39,7 +40,7 @@ class AlternativeLogin extends StatelessWidget {
           Navigator.popUntil(
               context, ModalRoute.withName('/')); // Pop all previous screens
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
+              .push(MaterialPageRoute(builder: (context) => OurHomeScreen()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(_returnString), duration: Duration(seconds: 2)));
