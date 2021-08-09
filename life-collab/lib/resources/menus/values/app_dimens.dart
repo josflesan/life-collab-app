@@ -17,4 +17,5 @@ class AppDimens {
   static const double BUTTON_TEXT = 22.0;
   static const double FORM_LABEL_TEXT_SIZE = 13.0;
   static const double FORM_INPUT_TEXT_SIZE = 20.0;
+  static const double NAVBAR_ITEM_TEXT_SIZE = 11.0;
 }

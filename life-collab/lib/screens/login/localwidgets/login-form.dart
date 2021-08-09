@@ -3,6 +3,7 @@ import 'package:life_collab/resources/menus/values/app_colors.dart';
 import 'package:life_collab/resources/menus/values/app_dimens.dart';
 import 'package:life_collab/screens/home/home.dart';
 import 'package:life_collab/screens/no-group/no-group.dart';
+import 'package:life_collab/screens/tab-view/tabview.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:life_collab/widgets/primary-button.dart';
 import 'package:life_collab/widgets/text-form.dart';
@@ -29,7 +30,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
         Navigator.popUntil(
             context, ModalRoute.withName('/')); // Pop all previous screens
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => OurHomeScreen()));
+            .push(MaterialPageRoute(builder: (context) => OurTabView()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(_returnString), duration: Duration(seconds: 2)));

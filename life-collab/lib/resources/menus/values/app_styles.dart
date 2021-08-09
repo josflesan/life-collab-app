@@ -77,6 +77,20 @@ class AppStyles {
     color: AppColors.PRIMARY_GREEN,
   );
 
+  static const TextStyle NAVBAR_ITEM_TEXT_UNS = TextStyle(
+    fontSize: AppDimens.NAVBAR_ITEM_TEXT_SIZE,
+    fontFamily: 'Gilroy',
+    fontWeight: FontWeight.w700,
+    color: AppColors.APP_BLACK,
+  );
+
+  static const TextStyle NAVBAR_ITEM_TEXT_SEL = TextStyle(
+    fontSize: AppDimens.NAVBAR_ITEM_TEXT_SIZE,
+    fontFamily: 'Gilroy',
+    fontWeight: FontWeight.w700,
+    color: AppColors.SECONDARY_ORANGE,
+  );
+
   // Button Styles
 
 }
