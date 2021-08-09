@@ -41,12 +41,12 @@ class _OurRootState extends State<OurRoot> {
     Widget retVal;
 
     switch (_authStatus) {
-      case AuthStatus.notLoggedIn:
-        retVal = OurLanding();
-        break;
-
       case AuthStatus.loggedIn:
         retVal = OurTabView();
+        break;
+
+      case AuthStatus.notLoggedIn:
+        retVal = OurLanding();
         break;
 
       default:

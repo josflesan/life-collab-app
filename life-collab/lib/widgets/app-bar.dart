@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:life_collab/resources/menus/values/app_colors.dart';
 
@@ -25,6 +26,7 @@ class _OurAppBarState extends State<OurAppBar> {
           alignment: Alignment.centerRight,
           child: FaIcon(widget.icon, color: AppColors.APP_BLACK)),
       backgroundColor: AppColors.APP_WHITE,
+      brightness: Brightness.light,
       title: Text(widget.title,
           style: TextStyle(
             fontSize: 18.0,

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:life_collab/screens/root/root.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:life_collab/widgets/app-bar.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class OurHomeTab extends StatelessWidget {
@@ -21,12 +22,12 @@ class OurHomeTab extends StatelessWidget {
                 Provider.of<CurrentUser>(context, listen: false);
             String _returnString = await _currentUser.signOut();
             if (_returnString == "success") {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OurRoot(),
-                  ),
-                  (route) => false);
+              pushNewScreen(
+                context,
+                screen: OurRoot(),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
             }
           },
         ),
