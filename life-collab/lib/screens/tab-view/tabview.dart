@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:life_collab/resources/menus/values/app_colors.dart';
-import 'package:life_collab/resources/menus/values/app_styles.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:life_collab/screens/finance/finance.dart';
 import 'package:life_collab/screens/home/home.dart';
 import 'package:life_collab/screens/plan/plan.dart';
@@ -23,52 +23,63 @@ class _OurTabViewState extends State<OurTabView> {
     ProfileTab(),
   ];
 
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+  List<PersistentBottomNavBarItem> _navBarItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: FaIcon(FontAwesomeIcons.home),
+        title: ("Home"),
+        activeColorPrimary: AppColors.SECONDARY_ORANGE,
+        inactiveColorPrimary: AppColors.FADED_OUT_COLOUR,
+      ),
+      PersistentBottomNavBarItem(
+        icon: FaIcon(FontAwesomeIcons.clipboard),
+        title: ("Plan"),
+        activeColorPrimary: AppColors.SECONDARY_ORANGE,
+        inactiveColorPrimary: AppColors.FADED_OUT_COLOUR,
+      ),
+      PersistentBottomNavBarItem(
+        icon: FaIcon(FontAwesomeIcons.moneyBill),
+        title: ("Finance"),
+        activeColorPrimary: AppColors.SECONDARY_ORANGE,
+        inactiveColorPrimary: AppColors.FADED_OUT_COLOUR,
+      ),
+      PersistentBottomNavBarItem(
+        icon: FaIcon(FontAwesomeIcons.user),
+        title: ("Profile"),
+        activeColorPrimary: AppColors.SECONDARY_ORANGE,
+        inactiveColorPrimary: AppColors.FADED_OUT_COLOUR,
+      ),
+    ];
   }
+
+  PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Life Collab'),
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      screens: _children,
+      items: _navBarItems(),
+      confineInSafeArea: true,
+      backgroundColor: AppColors.APP_WHITE,
+      decoration: NavBarDecoration(
+        colorBehindNavBar: AppColors.APP_WHITE,
       ),
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppColors.SECONDARY_ORANGE,
-        selectedLabelStyle: AppStyles.NAVBAR_ITEM_TEXT_SEL,
-        currentIndex: _currentIndex,
-        onTap: onTabTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.home,
-                color: AppColors.FADED_OUT_COLOUR),
-            activeIcon: FaIcon(FontAwesomeIcons.home,
-                color: AppColors.SECONDARY_ORANGE),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.clipboard,
-                  color: AppColors.FADED_OUT_COLOUR),
-              activeIcon: FaIcon(FontAwesomeIcons.clipboard,
-                  color: AppColors.SECONDARY_ORANGE),
-              label: "Plan"),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.moneyBill,
-                  color: AppColors.FADED_OUT_COLOUR),
-              activeIcon: FaIcon(FontAwesomeIcons.moneyBill,
-                  color: AppColors.SECONDARY_ORANGE),
-              label: "Finance"),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.user,
-                  color: AppColors.FADED_OUT_COLOUR),
-              activeIcon: FaIcon(FontAwesomeIcons.user,
-                  color: AppColors.SECONDARY_ORANGE),
-              label: "Profile"),
-        ],
+      popAllScreensOnTapOfSelectedTab: true,
+      itemAnimationProperties: ItemAnimationProperties(
+        // Navigation Bar's items animation properties.
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
       ),
+      screenTransitionAnimation: ScreenTransitionAnimation(
+        // Screen transition animation on change of selected tab.
+        animateTabTransition: true,
+        curve: Curves.ease,
+        duration: Duration(milliseconds: 200),
+      ),
+      navBarStyle: NavBarStyle.style6,
     );
   }
 }
