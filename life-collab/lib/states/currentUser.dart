@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_collab/models/user.dart';
 import 'package:life_collab/services/database.dart';
+import 'package:http/http.dart' as http;
 
 class CurrentUser extends ChangeNotifier {
   OurUser _currentUser = OurUser();
@@ -57,6 +60,7 @@ class CurrentUser extends ChangeNotifier {
           email: email, password: password);
       _user.uid = _authResult.user.uid;
       _user.email = _authResult.user.email;
+      _user.profilePic = "";
       _user.fullName = fullName;
       String _returnString = await OurDatabase().createUser(_user);
       if (_returnString == "success") {
@@ -91,6 +95,7 @@ class CurrentUser extends ChangeNotifier {
 
       _currentUser.uid = _authResult.user.uid;
       _currentUser.email = _authResult.user.email;
+      _currentUser.profilePic = _authResult.user.photoURL;
       _currentUser = await OurDatabase().getUserInfo(_authResult.user.uid);
       if (_currentUser != null) {
         retVal = "success";
@@ -134,6 +139,7 @@ class CurrentUser extends ChangeNotifier {
         _user.uid = _authResult.user.uid;
         _user.email = _authResult.user.email;
         _user.fullName = _authResult.user.displayName;
+        _user.profilePic = _authResult.user.photoURL;
         OurDatabase().createUser(_user);
       }
       _currentUser = await OurDatabase().getUserInfo(_authResult.user.uid);
@@ -165,9 +171,15 @@ class CurrentUser extends ChangeNotifier {
           final _authResult =
               await _auth.signInWithCredential(facebookCredential);
 
+          final graphResponse = await http.get(Uri.parse(
+              'https://graph.facebook.com/v2.12/me?fields=name,picture.width(800).height(800),first_name,last_name,email&access_token=${result.accessToken.token}'));
+
+          final profile = jsonDecode(graphResponse.body);
+
           if (_authResult.additionalUserInfo.isNewUser) {
             _user.uid = _authResult.user.uid;
             _user.email = _authResult.user.email;
+            _user.profilePic = profile['picture']['data']['url'];
             _user.fullName = _authResult.user.displayName;
             OurDatabase().createUser(_user);
           }

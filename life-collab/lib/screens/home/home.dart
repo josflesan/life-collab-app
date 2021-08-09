@@ -14,24 +14,7 @@ class OurHomeTab extends StatelessWidget {
     return Scaffold(
       appBar: OurAppBar(title: "Your Household", icon: FontAwesomeIcons.home),
       backgroundColor: Colors.purple,
-      body: Center(
-        child: ElevatedButton(
-          child: Text("Sign Out"),
-          onPressed: () async {
-            CurrentUser _currentUser =
-                Provider.of<CurrentUser>(context, listen: false);
-            String _returnString = await _currentUser.signOut();
-            if (_returnString == "success") {
-              pushNewScreen(
-                context,
-                screen: OurRoot(),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
-            }
-          },
-        ),
-      ),
+      body: Center(),
     );
   }
 }
