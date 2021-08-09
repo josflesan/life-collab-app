@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:life_collab/screens/root/root.dart';
 import 'package:life_collab/states/currentUser.dart';
+import 'package:life_collab/widgets/app-bar.dart';
 import 'package:provider/provider.dart';
 
 class OurHomeTab extends StatelessWidget {
@@ -9,6 +11,7 @@ class OurHomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: OurAppBar(title: "Your Household", icon: FontAwesomeIcons.home),
       backgroundColor: Colors.purple,
       body: Center(
         child: ElevatedButton(
