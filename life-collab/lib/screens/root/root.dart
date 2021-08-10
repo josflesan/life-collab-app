@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:life_collab/screens/landing/landing.dart';
+import 'package:life_collab/screens/loadingScreen/loadingScreen.dart';
+import 'package:life_collab/screens/no-group/no-group.dart';
 import 'package:life_collab/screens/tab-view/tabview.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:provider/provider.dart';
 
-enum AuthStatus {
-  notLoggedIn,
-  loggedIn,
-}
+enum AuthStatus { unknown, notLoggedIn, notInGroup, inGroup }
 
 class OurRoot extends StatefulWidget {
   const OurRoot({Key key}) : super(key: key);
@@ -17,7 +16,7 @@ class OurRoot extends StatefulWidget {
 }
 
 class _OurRootState extends State<OurRoot> {
-  AuthStatus _authStatus = AuthStatus.notLoggedIn;
+  AuthStatus _authStatus = AuthStatus.unknown;
 
   @override
   void didChangeDependencies() async {
@@ -29,9 +28,21 @@ class _OurRootState extends State<OurRoot> {
 
     // Check current user
     if (_returnString == "success") {
+      if (_currentUser.getCurrentUser.groupId != null) {
+        setState(() {
+          // Set AuthStatus based on state
+          _authStatus = AuthStatus.inGroup;
+        });
+      } else {
+        setState(() {
+          // Set AuthStatus based on state
+          _authStatus = AuthStatus.notInGroup;
+        });
+      }
+    } else {
       setState(() {
         // Set AuthStatus based on state
-        _authStatus = AuthStatus.loggedIn;
+        _authStatus = AuthStatus.notLoggedIn;
       });
     }
   }
@@ -41,7 +52,15 @@ class _OurRootState extends State<OurRoot> {
     Widget retVal;
 
     switch (_authStatus) {
-      case AuthStatus.loggedIn:
+      case AuthStatus.unknown:
+        retVal = OurLoadingScreen();
+        break;
+
+      case AuthStatus.notInGroup:
+        retVal = NoGroupScreen();
+        break;
+
+      case AuthStatus.inGroup:
         retVal = OurTabView();
         break;
 

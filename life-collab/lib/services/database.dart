@@ -33,6 +33,7 @@ class OurDatabase {
       retVal.email = _docSnapshot["email"];
       retVal.profilePic = _docSnapshot["profilePic"];
       retVal.accountCreated = _docSnapshot["accountCreated"];
+      retVal.groupId = _docSnapshot["groupId"];
     } catch (e) {
       print(e);
     }

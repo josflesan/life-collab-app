@@ -6,6 +6,7 @@ class OurUser {
   String fullName;
   String profilePic;
   Timestamp accountCreated;
+  String groupId;
 
   OurUser({
     this.uid,
@@ -13,5 +14,6 @@ class OurUser {
     this.fullName,
     this.profilePic,
     this.accountCreated,
+    this.groupId,
   });
 }

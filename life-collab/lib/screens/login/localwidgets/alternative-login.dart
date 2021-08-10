@@ -21,7 +21,7 @@ class AlternativeLogin extends StatelessWidget {
           Navigator.popUntil(
               context, ModalRoute.withName('/')); // Pop all previous screens
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => OurTabView()));
+              .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(_returnString), duration: Duration(seconds: 2)));
@@ -41,7 +41,7 @@ class AlternativeLogin extends StatelessWidget {
           Navigator.popUntil(
               context, ModalRoute.withName('/')); // Pop all previous screens
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => OurTabView()));
+              .push(MaterialPageRoute(builder: (context) => NoGroupScreen()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(_returnString), duration: Duration(seconds: 2)));
