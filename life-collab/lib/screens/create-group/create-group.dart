@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:life_collab/resources/menus/values/app_colors.dart';
 import 'package:life_collab/resources/menus/values/app_dimens.dart';
 import 'package:life_collab/resources/menus/values/app_styles.dart';
@@ -12,7 +13,22 @@ class CreateGroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void navigateNoGroup() {
+      Navigator.pop(context);
+    }
+
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: Container(
+            alignment: Alignment.center,
+            child: IconButton(
+                onPressed: navigateNoGroup,
+                icon: FaIcon(FontAwesomeIcons.arrowLeft,
+                    color: AppColors.APP_BLACK))),
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.APP_BLACK,
+      ),
       body: Padding(
         padding: AppDimens.SCREEN_PADDING_LARGE,
         child: Row(
@@ -22,12 +38,12 @@ class CreateGroupScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.75,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          alignment: Alignment.topCenter,
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,10 +65,15 @@ class CreateGroupScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        OurPrimaryButton(
-                            click: navigateHome,
-                            text: "Begin",
-                            color: AppColors.SECONDARY_ORANGE),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: OurPrimaryButton(
+                                click: navigateHome,
+                                text: "Begin",
+                                color: AppColors.SECONDARY_ORANGE),
+                          ),
+                        ),
                       ],
                     ),
                   ),
