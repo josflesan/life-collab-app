@@ -66,6 +66,13 @@ class _OurTabViewState extends State<OurTabView> {
       backgroundColor: AppColors.APP_WHITE,
       decoration: NavBarDecoration(
         colorBehindNavBar: AppColors.APP_WHITE,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.FADED_OUT_COLOUR.withOpacity(0.5),
+            blurRadius: 7.0,
+            spreadRadius: 5.0,
+          )
+        ],
       ),
       popAllScreensOnTapOfSelectedTab: true,
       itemAnimationProperties: ItemAnimationProperties(
@@ -79,7 +86,7 @@ class _OurTabViewState extends State<OurTabView> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style6,
+      navBarStyle: NavBarStyle.style11,
     );
   }
 }
