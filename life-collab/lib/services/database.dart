@@ -11,6 +11,7 @@ class OurDatabase {
       await _firestore.collection("users").doc(user.uid).set({
         'fullName': user.fullName,
         'email': user.email,
+        'profilePic': user.profilePic,
         'accountCreated': Timestamp.now(),
       });
       retVal = "success";
@@ -30,6 +31,7 @@ class OurDatabase {
       retVal.uid = uid;
       retVal.fullName = _docSnapshot["fullName"];
       retVal.email = _docSnapshot["email"];
+      retVal.profilePic = _docSnapshot["profilePic"];
       retVal.accountCreated = _docSnapshot["accountCreated"];
     } catch (e) {
       print(e);

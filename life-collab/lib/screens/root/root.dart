@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:life_collab/screens/home/home.dart';
 import 'package:life_collab/screens/landing/landing.dart';
-import 'package:life_collab/screens/no-group/no-group.dart';
+import 'package:life_collab/screens/tab-view/tabview.dart';
 import 'package:life_collab/states/currentUser.dart';
 import 'package:provider/provider.dart';
 
@@ -42,12 +41,12 @@ class _OurRootState extends State<OurRoot> {
     Widget retVal;
 
     switch (_authStatus) {
-      case AuthStatus.notLoggedIn:
-        retVal = OurLanding();
+      case AuthStatus.loggedIn:
+        retVal = OurTabView();
         break;
 
-      case AuthStatus.loggedIn:
-        retVal = OurHomeScreen();
+      case AuthStatus.notLoggedIn:
+        retVal = OurLanding();
         break;
 
       default:
